@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="utf-8" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+
+    <package name="xiaomi" extends="json-default">
+
+        <default-action-ref name="show" />
+
+        <global-results>
+            <result name="error">/WEB-INF/view/error/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+        </global-exception-mappings>
+
+
+        <action name="show" class="scheduleAction" method="show">
+            <result>/WEB-INF/view/schedule/show.jsp</result>
+        </action>
+
+        <action name="edit" class="scheduleAction" method="edit">
+            <result>/WEB-INF/view/schedule/edit.jsp</result>
+        </action>
+
+        <action name="save" class="scheduleAction" method="save">
+            <result>/WEB-INF/view/schedule/save.jsp</result>
+            <result name="input">/WEB-INF/view/schedule/edit.jsp</result>
+        </action>
+
+    </package>
+
+
+</struts>
+
+
+

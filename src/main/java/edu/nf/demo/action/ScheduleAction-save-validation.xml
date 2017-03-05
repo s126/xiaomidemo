@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+
+    <!-- 验证收货人 -->
+    <field name="schedule.consignee">
+        <field-validator type="requiredstring">
+            <message>请填写收货人</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">1</param>
+            <param name="maxLength">8</param>
+            <message>收货人必须在 ${maxLength} 个字符之内</message>
+        </field-validator>
+    </field>
+
+
+    <!-- 验证邮箱 -->
+    <field name="schedule.email">
+        <field-validator type="requiredstring">
+            <message>邮箱不能为空</message>
+        </field-validator>
+        <field-validator type="email">
+            <message>请填写正确的邮箱</message>
+        </field-validator>
+    </field>
+
+
+    <!-- 验证收货地址 -->
+    <field name="schedule.address">
+        <field-validator type="requiredstring">
+            <message>请填写收货地址</message>
+        </field-validator>
+    </field>
+
+</validators>

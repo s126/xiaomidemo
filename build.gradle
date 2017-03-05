@@ -1,0 +1,54 @@
+group 'edu.nf'
+version '1.00'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    def strutsVersion = "2.3.28"
+    def hibernateVersion = "5.2.0.Final"
+    def springVersion = "4.3.6.RELEASE"
+
+    compile("javax.servlet:jstl:1.2",
+            "log4j:log4j:1.2.17",
+
+            "cn.easyproject:ojdbc7:12.1.0.2.0",
+            "c3p0:c3p0:0.9.1.2",
+
+            "org.apache.struts:struts2-core:$strutsVersion",
+            "org.apache.struts:struts2-json-plugin:$strutsVersion",
+            "org.apache.struts:struts2-spring-plugin:$strutsVersion",
+
+            "org.hibernate:hibernate-core:$hibernateVersion",
+
+            "org.springframework:spring-web:$springVersion",
+            "org.springframework:spring-aop:$springVersion",
+            "org.springframework:spring-orm:$springVersion",
+            "org.aspectj:aspectjweaver:1.8.9"
+    )
+
+    testCompile("junit:junit:4.12")
+    providedCompile("javax:javaee-web-api:7.0")
+
+}
+
+configurations {
+    all*.exclude group: 'javassist', module: 'javassist'
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+task copyJars(type: Copy) {
+    from configurations.compile, configurations.testCompile
+    into "lib"
+}
